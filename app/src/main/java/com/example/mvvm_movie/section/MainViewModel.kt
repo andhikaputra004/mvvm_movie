@@ -45,11 +45,3 @@ class MainViewModel @Inject constructor(val repo: NetworkRepositoryImpl) : BaseV
 
     fun fetchList() = response
 }
-
-@FragmentScoped
-class MainViewModelFactory @Inject constructor(val repo: NetworkRepositoryImpl) :
-    ViewModelProvider.NewInstanceFactory() {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(repo) as T
-    }
-}

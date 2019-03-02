@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AndroidSupportInjectionModule::class, NetworkModule::class, ActivityBuilder::class,
-    FragmentBuilder::class])
+    FragmentBuilder::class,DatabaseModule::class])
 interface AppComponent : AndroidInjector<DaggerApplication> {
     fun inject(application :MovieApp)
 
@@ -21,6 +21,7 @@ interface AppComponent : AndroidInjector<DaggerApplication> {
         @BindsInstance
         fun application(application: Application): Builder
         fun networkModule(networkModule: NetworkModule): Builder
+        fun databaseModule(databaseModule: DatabaseModule) : Builder
         fun build(): AppComponent
     }
 }

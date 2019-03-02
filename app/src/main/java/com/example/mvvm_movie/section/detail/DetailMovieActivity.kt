@@ -1,4 +1,4 @@
-package com.example.mvvm_movie.section
+package com.example.mvvm_movie.section.detail
 
 import com.example.mvvm_movie.R
 import com.example.mvvm_movie.base.BaseActivity

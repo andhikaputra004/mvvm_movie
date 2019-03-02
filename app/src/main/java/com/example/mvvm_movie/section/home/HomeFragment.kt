@@ -17,11 +17,11 @@ import com.example.mvvm_movie.model.Genre
 import com.example.mvvm_movie.model.GenreResponse
 import com.example.mvvm_movie.model.NowPlayingResponse
 import com.example.mvvm_movie.model.Result
-import com.example.mvvm_movie.section.DetailMovieActivity
+import com.example.mvvm_movie.section.detail.DetailMovieActivity
 import com.example.mvvm_movie.section.MainViewModel
-import com.example.mvvm_movie.section.MainViewModelFactory
 import com.example.mvvm_movie.utils.Constant.Common.Companion.POSTER_PATH_URL
 import com.example.mvvm_movie.utils.Constant.String.Companion.POSTER_IMAGE
+import com.example.mvvm_movie.utils.ViewModelUtil
 import com.example.mvvm_movie.utils.gone
 import com.example.mvvm_movie.utils.loadImage
 import com.example.mvvm_movie.utils.show
@@ -65,9 +65,6 @@ class HomeFragment : DaggerFragment() {
     @Inject
     lateinit var viewModel: MainViewModel
 
-    @Inject
-    lateinit var factory: MainViewModelFactory
-
     private val subjectGenre: PublishSubject<List<Genre>> = PublishSubject.create()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
@@ -79,6 +76,8 @@ class HomeFragment : DaggerFragment() {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         }
+
+        val factory = ViewModelUtil.createFor(viewModel)
 
         viewModel = ViewModelProviders.of(this, factory)[MainViewModel::class.java]
         viewModel.getGenre()

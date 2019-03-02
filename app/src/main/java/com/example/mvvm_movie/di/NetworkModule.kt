@@ -1,6 +1,7 @@
 package com.example.mvvm_movie.di
 
 import com.example.mvvm_movie.BuildConfig
+import com.example.mvvm_movie.data.MovieDataBase
 import com.example.mvvm_movie.data.NetworkRepositoryImpl
 import com.example.mvvm_movie.data.RemoteDataSource
 import com.example.mvvm_movie.network.NetworkService
@@ -39,7 +40,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providesRepository(remoteDataSource: RemoteDataSource) = NetworkRepositoryImpl(remoteDataSource)
+    fun providesRepository(remoteDataSource: RemoteDataSource, database: MovieDataBase) =
+        NetworkRepositoryImpl(remoteDataSource, database)
 
     @Provides
     @Singleton
